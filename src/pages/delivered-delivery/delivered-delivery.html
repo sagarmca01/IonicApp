@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      <img alt="logo" height="30" src="assets/img/image001.png">
+    </ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <form>
+      <h2>{{headingText}}</h2>
+    <ion-grid text-center>
+      <ion-row shadow *ngFor="let item of deliveredData">
+        <ion-col >
+          <ion-label>Invoice Number: <span style="font-weight: 300;">{{item.invoice_number}} </span></ion-label><br>
+          <ion-label>Invoice Date: <span style="font-weight: 300;"> {{item.invoice_date | date: 'dd/MM/yyyy'}} </span> </ion-label><br>
+          <ion-label>SKU Count: <span style="font-weight: 300;"> {{item.sku_code}} </span></ion-label><br>
+          <ion-label>Status: <span style="font-weight: 300;"> {{item.status}} </span></ion-label><br>
+          <ion-label>Status Date: <span style="font-weight: 300;"> {{item.Statusdate | date: 'dd/MM/yyyy'}} </span></ion-label><br>
+          <ion-label *ngIf="!isCustomer">Party Name: <span style="font-weight: 300;">{{item.PARTYNAME}} </span></ion-label><br>
+        </ion-col>
+      <ion-col col-2><br><br><br><button ion-button color="primary"  (click)="getInvoiceDetail(item.invoice_number);">View</button></ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

@@ -1,0 +1,78 @@
+page-depot-form {
+    .item-input .label-md,
+    .item-select .label-md,
+    .item-datetime .label-md,
+    .item-input .label-ios,
+    .item-select .label-ios,
+    .item-datetime .label-ios {
+        min-width: 40%;
+    }
+    .text-input-md,
+    .select.select-md, 
+    .datetime.datetime-md,
+    .text-input-ios{
+        padding: 5px;
+        border: 1px solid #ddd;
+        font-size: 13px;
+        width: 100%;
+        margin: 0;
+        max-width: 100%;
+    }
+    .select.select-ios, 
+    .datetime.datetime-ios{
+        padding: 5px;
+        border: 1px solid #ddd;
+        font-size: 13px;
+        width: 52%;
+        margin: 0;
+        margin-left: auto;
+        max-width: 100%;
+    }
+    .list-md .item-block .item-inner,
+    .list-md .item-input:last-child,
+    .list-ios .item-block .item-inner,
+    .list-ios .item-input:last-child {
+        border: none;
+    }
+    ion-label {
+        font-weight: 800;
+        font-size: 12px;
+    }
+    .block {
+        position: relative;
+        .deleteIcon {
+          position: absolute !important;
+        //   color: #ffffff !important;
+        //   margin-left: 80% !important;
+        }
+        .deleteIcon:before {
+          font-size: 30px !important;
+        }
+    }
+    .toolbar-md-primary .toolbar-title-md{
+        position: absolute;
+        text-align: center;
+    }
+    .toolbar-ios-primary .toolbar-title-ios{
+        text-align: center;
+        position: relative;
+        width: -webkit-fill-available;
+    }
+    .toolbar-md-primary .toolbar-background-md, .toolbar-ios-primary .toolbar-background-ios {
+        background: #0B418B;
+    }
+    .item-ios .item-button{
+        padding: 0 0.5em;
+        height: 32px;
+        font-size: 2.3rem;
+    }
+    .list-md, .list-ios{
+        margin: 0px 0 0px;
+    }
+    .button-md, .button-ios{
+        border-radius: 30px;
+        text-transform: none;
+        height: 5.0rem;
+        font-size: 2.0rem;
+    }
+}

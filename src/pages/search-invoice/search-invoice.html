@@ -1,0 +1,130 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      <img alt="logo" height="30" src="assets/img/image001.png">
+    </ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons end>
+        <button ion-button icon-only (click)="doRefresh()" style="font-size: 20px;">
+          <ion-icon name="refresh-circle"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-buttons end>
+          <button id="notification-btn" ion-button icon-only (click)="this.navCtrl.push('NotificationPage')" style="font-size: 20px;">
+            <ion-icon name="notifications"></ion-icon>
+            <ion-badge id="notifications-badge" *ngIf="notificationCount">{{notificationCount}}</ion-badge>
+          </button>
+        </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <!-- autoplay="5000" loop="true" speed="500" -->
+  <ion-slides *ngIf="slides" autoplay="5000" loop="true" speed="500" pager="true" dir="{{dir}}" (ionSlideWillChange)="onSlideChangeStart($event)">
+    <ion-slide *ngFor="let slide of slides">
+      <img [src]="slide.URL" class="slide-image" />
+    </ion-slide>
+  </ion-slides>
+   <ion-list>
+   <!-- <ion-item>
+    <ion-input type="text" [(ngModel)]="searchInvoice.DC_Number" placeholder="Enter DC Number" class="search-text"></ion-input>
+    <ion-icon name="search" item-right (click)="searchInvoiceWithNumber('DCNUMBER')" class="icon-zindex"></ion-icon>
+  </ion-item>
+  <p block text-center>OR</p>
+  <ion-item>
+    <ion-input type="text"  [(ngModel)]="searchInvoice.POD_Number" placeholder="Enter POD Number" class="search-text"></ion-input>
+    <ion-icon name="search" item-right (click)="searchInvoiceWithNumber('PODNUMBER')" class="icon-zindex"></ion-icon>
+  </ion-item>
+  <p block text-center>OR</p> -->
+    <ion-item style="border-radius: 25px;">
+      <ion-input type="text" [(ngModel)]="searchInvoice.Invoice_Number" placeholder="Enter Invoice Number"
+        class="search-text"></ion-input>
+      <ion-icon name="search" item-right (click)="searchInvoiceWithNumber('INVOICENUMBER')" class="icon-zindex">
+      </ion-icon>
+    </ion-item>
+  </ion-list>
+  <!-- <ion-img src="assets/imgs/nippon_image.jpg" class="img-nippon"></ion-img> -->
+
+
+  <ion-grid text-center>
+    <ion-row class="ion-row-header" style="background-color: lightblue;">
+      <ion-col>
+        <ion-label><b>Upcoming Deliveries</b></ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-label></ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-label><a (click)="this.navCtrl.push('PendingDeliveryPage')">View All</a></ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-row-header">
+      <ion-col>
+        <ion-label>Invoice No.</ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-label>Invoice Date</ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-label>No of SKU</ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-label>Status</ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-label>Action</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row shadow *ngFor="let item of pendingData">
+      <ion-col>{{item.invoice_number}}</ion-col>
+      <ion-col *ngIf="item.invoice_date !='--'">{{item.invoice_date | date: 'dd/MM/yyyy'}}</ion-col>
+      <ion-col *ngIf="item.invoice_date =='--'">{{item.invoice_date}}</ion-col>
+      <ion-col>{{item.sku_code}}</ion-col>
+      <ion-col *ngIf="item.Statusdate !='--'">{{item.status}} <br>({{item.Statusdate | date: 'dd/MM/yyyy'}})</ion-col>
+      <ion-col *ngIf="item.Statusdate =='--'">{{item.status}} </ion-col>
+      <ion-col *ngIf="item.invoice_number !='--'"><a  (click)="getInvoiceDetail(item.invoice_number);">View</a></ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid text-center>
+    <ion-row class="ion-row-header" style="background-color: lightblue;">
+      <ion-col>
+        <ion-label><b>Completed Deliveries</b></ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-label></ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-label><a (click)="this.navCtrl.push('DeliveredDeliveryPage')">View All</a></ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-row-header">
+      <ion-col>
+        <ion-label>Invoice No.</ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-label>Invoice Date</ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-label>No of SKU</ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-label>Status</ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-label>Action</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row shadow *ngFor="let item of deliveredData">
+      <ion-col>{{item.invoice_number}}</ion-col>
+      <ion-col *ngIf="item.invoice_date !='--'">{{item.invoice_date | date: 'dd/MM/yyyy'}}</ion-col>
+      <ion-col *ngIf="item.invoice_date =='--'">{{item.invoice_date}}</ion-col>
+      <ion-col>{{item.sku_code}}</ion-col>
+      <ion-col *ngIf="item.Statusdate !='--'">{{item.status}} <br>({{item.Statusdate | date: 'dd/MM/yyyy'}})</ion-col>
+      <ion-col *ngIf="item.Statusdate =='--'">{{item.status}} </ion-col>
+      <ion-col *ngIf="item.invoice_number !='--'"><a  (click)="getInvoiceDetail(item.invoice_number);">View</a></ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

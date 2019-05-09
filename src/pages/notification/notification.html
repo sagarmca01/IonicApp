@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      <img alt="logo" height="30" src="assets/img/image001.png">
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <h2>{{headingText}}</h2>
+  <ion-list>
+    <ion-item shadow *ngFor="let item of notificationData">
+      <h2>{{item.Notification}}</h2>
+      <p>{{item.date | date: 'dd/MM/yyyy, hh:mm a '}}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>

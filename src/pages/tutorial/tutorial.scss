@@ -1,0 +1,47 @@
+page-tutorial {
+  .content-md, .content-ios{
+    background-color:#0B418B;
+  }
+  .toolbar-background-md, .toolbar-background-ios{
+    background-color:#0B418B;
+  }
+  .bar-button-md-primary, .bar-button-ios-primary{
+    color:white;
+  }
+  .back-button.show-back-button{
+    color:white;
+  }
+  .button-md, .button-ios{
+    color:white;
+  }
+      
+        .slide-zoom {
+          height: 100%;
+        }
+      
+        .slide-title {
+          margin-top: 0.1rem;
+        }
+      
+        .slide-image {
+          max-height: 87%;
+        }
+      
+        b {
+          font-weight: 500;
+        }
+      
+          b {
+            color: #000000;
+          }
+        .swiper-slide img{
+          width: 84%;
+          height: 100%;
+        }  
+        h2{
+          margin-top: 1%;
+        }  
+        .button-large-md, .button-large-ios{
+          height: 0.8em;
+        }
+}

@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      <img alt="logo" height="30" src="assets/img/image001.png">
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form>
+    <ion-list>
+      <ion-item>
+        <ion-label fixed class="fontSize">Sku Code:</ion-label>
+        <ion-input type="text" [(ngModel)]="returnPostData.sku_code" name="skucode" style="border: 0px solid #ddd;" readonly></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label fixed class="fontSize">Ordered Qty:</ion-label>
+          <ion-input type="number" [(ngModel)]="returnPostData.Quantity" name="Quantity" style="border: 0px solid #ddd;" readonly></ion-input>
+        </ion-item>
+
+      <ion-item>
+        <ion-label fixed class="fontSize">Actual Damage Qty:</ion-label>
+        <ion-input type="number" [(ngModel)]="returnPostData.Damage_qty" name="damage_qty" ></ion-input>
+      </ion-item>      
+
+      <ion-item>
+        <ion-label fixed class="fontSize">Type of Damage:</ion-label>
+        <ion-select [(ngModel)]="selectedData" (ionChange)="optionsFn();" name="slectlist">
+          <ion-option value='0' selected>Select</ion-option>
+          <ion-option *ngFor="let item of damageList" [value]="item.id">{{item.Defectname}}</ion-option>
+        </ion-select>        
+      </ion-item>
+
+      <!-- <ion-item>
+        <ion-label fixed class="fontSize">Settlement:</ion-label>
+        <ion-select [(ngModel)]="Settlement" (ionChange)="settlementFn();" name="settlement">
+            <ion-option value='0' selected>Select</ion-option>
+            <ion-option value="Return">Return</ion-option>
+            <ion-option value="Issue Credit Note">Issue Credit Note</ion-option>
+          </ion-select>        
+      </ion-item> -->
+
+      <ion-item>
+        <ion-label fixed class="fontSize">Remark:</ion-label>
+        <ion-input type="text" [(ngModel)]="returnPostData.Remark" name="remark"></ion-input>
+      </ion-item>
+
+      <div padding text-center>
+        <button ion-button color="primary" (click)="returnRequest()"> Report Variance</button>
+      </div>
+
+    </ion-list>
+    <div style="border: 1px solid black;"></div>
+    <ion-grid text-center>
+      <ion-row>
+        <ion-col col-6 *ngFor="let photo of photos; let id = index">
+          <ion-card class="block">
+            <ion-icon name="close" class="deleteIcon" (click)="deletePhoto(id)"></ion-icon>
+            <img [src]="photo" *ngIf="photo" />
+          </ion-card>
+        </ion-col>
+        <ion-col col-6>
+          <ion-card class="block" (click)="captureImage(false)">
+            <img src="assets/imgs/camera.png" />
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </form>
+</ion-content>

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "192200564971",
+    "firebase_url": "https://nipponpaint-4e86d.firebaseio.com",
+    "project_id": "nipponpaint-4e86d",
+    "storage_bucket": "nipponpaint-4e86d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:192200564971:android:b2b46698b511d569",
+        "android_client_info": {
+          "package_name": "com.nippondelivery.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "192200564971-hogl3dqkjm5qglab94va3nk068fhv9mt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPFbjxmoJ0KChau1SoVzbh3nZ2Z_OzB6Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

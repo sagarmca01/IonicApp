@@ -1,0 +1,22 @@
+
+<ion-content padding color="primary">
+  <div class="text-center logo-container">
+    <img src="assets/imgs/logo.png" />
+  </div><br><br>
+  <h2 block text-center>Let us know about you</h2>
+
+  <ion-list>
+    <ion-item>
+      <button ion-button full (click)="this.navCtrl.push('TutorialPage',{userType:'Customer'})">I am a customer</button>
+    </ion-item>
+    <ion-item>
+        <button ion-button full (click)="this.navCtrl.push('LoginPage',{userType:'Other'})">I am a other user</button>
+    </ion-item>
+    </ion-list>
+
+    <!-- <ion-list>
+      <ion-item>
+        <img src="assets/img/DT.png">
+      </ion-item>
+      </ion-list> -->
+</ion-content>

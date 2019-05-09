@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      <img alt="logo" height="30" src="assets/img/image001.png">
+    </ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form>
+    <ion-list>
+      <ion-item>
+        <ion-label fixed>Invoice No.</ion-label>
+        <ion-input type="text" [(ngModel)]="pickupData.Invoice_Number" name='InvoiceNumber' (change)="checkPickup()"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label fixed>DC No.</ion-label>
+          <ion-input type="text" [(ngModel)]="pickupData.DC_Number" name='DCNumber'></ion-input>
+        </ion-item>
+      <ion-item> 
+        <ion-label fixed>Transport Company</ion-label>
+        <ion-select [(ngModel)]="selectedData" (ionChange)="optionsFn();" name="slectlist">
+          <ion-option  value='0' selected>Select</ion-option>
+          <ion-option *ngFor="let item of transPorterList" [value]="item.transporter_id">{{item.Company_Name}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>POD Number</ion-label>
+        <ion-input type="text" [(ngModel)]="pickupData.POD_Number" name="PODNumber"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>Vehicle No.</ion-label>
+        <ion-input type="text" [(ngModel)]="pickupData.Vehicle_Number" name="VehicleNumber"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>Pickup Time</ion-label>
+        <ion-datetime [(ngModel)]="pickupData.Pickup_Date" displayFormat="DD/MM/YYYY" name="pickupTime" disabled ></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>Pickup Person Name</ion-label>
+        <ion-input type="text" [(ngModel)]="pickupData.Pickup_Person_Name" name="pickupPersonName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>Pickup Mobile</ion-label>
+        <ion-input type="tel" [(ngModel)]="pickupData.Pickup_Mobile" maxlength="10" name="pickupPersonNumber"></ion-input>
+      </ion-item>
+      <!-- <ion-item>
+        <ion-label fixed>Delivery Person Name</ion-label>
+        <ion-input type="text" [(ngModel)]="pickupData.Pickup_Person_Number" name="DPersonName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>Delivery Mobile</ion-label>
+        <ion-input type="number" [(ngModel)]="pickupData.Pickup_Person_Number" name="DMobileNumber"></ion-input>
+      </ion-item> -->
+      <ion-item>
+        <ion-label fixed>No of pieces</ion-label>
+        <ion-input type="number" [(ngModel)]="pickupData.Number_of_Pieces" name="numberOfItem"></ion-input>
+      </ion-item>
+      <ion-item>
+        <div padding>
+          <button ion-button color="primary" block (click)="submitPickup()">Submit</button>
+        </div>
+      </ion-item>
+    </ion-list>
+
+    <div style="border: 1px solid black;"></div>
+    <ion-grid text-center>
+      <ion-row>
+        <ion-col col-6>
+          <ion-label>POD image: </ion-label>
+          <ion-card class="block">
+            <img [src]="photo" *ngIf="photo" />
+          </ion-card>
+        </ion-col>
+        <ion-col col-6>
+          <ion-card class="block" (click)="captureImage(false)">
+            <img src="assets/imgs/camera.png" />
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </form>
+</ion-content>

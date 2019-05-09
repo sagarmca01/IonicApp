@@ -1,0 +1,85 @@
+page-search-invoice {
+    .text-input-md, .text-input-ios {
+        padding: 10px;
+        border: 1px solid #ddd;
+        font-size: 16px;
+    }
+    .list-md .item-block .item-inner,
+    .list-md .item-input:last-child,
+    .list-ios .item-block .item-inner,
+    .list-ios .item-input:last-child {
+        border: none;
+    }
+    .icon-zindex{
+        z-index: 9999;
+        zoom: 2.0;
+    }
+    .scroll-content {
+        overflow-y:auto;
+    }
+
+    [shadow] {
+        box-shadow: 0 1px 4px 0px rgba(0, 0, 0, .3);
+        margin-bottom: 5px;
+        border-radius: 2px;
+    }
+    .toolbar-md-primary .toolbar-title-md{
+        position: absolute;
+        text-align: center;
+        margin-left: 15px;
+    }
+    .toolbar-ios-primary .toolbar-title-ios{
+        text-align: center;
+        position: relative;
+        width: -webkit-fill-available;
+    }
+    ion-slides{
+        height: 37%;
+    }
+    .list-md, .list-ios{
+        z-index: 999;
+        position: absolute;
+        top: 2%;
+        width: 90%;
+        margin-left: 5%;
+    }
+    .list-md .item-input:last-child, .list-ios .item-input:last-child{
+        height: 25px;
+    }
+    .text-input-md, .text-input-ios{
+        margin: 0;
+    }
+    .item-md, .item-ios{
+        padding-left: 0;
+    }
+    .swiper-slide img{
+        width: 100%;
+        height: 100%;
+    }
+    .toolbar-md-primary .toolbar-background-md, .toolbar-ios-primary .toolbar-background-ios {
+        background: #0B418B;
+    }
+    img{
+        max-width:50%;
+    }
+    .label-md{
+        margin: 13px -5px 13px 0;
+        font-weight: 800;
+    }
+    .label-ios{
+        margin: 12px 0px 12px -3px;
+        font-weight: 700;
+    }
+    .slide-zoom{
+        height: 100%;
+    }
+    #notification-btn {
+        position: relative;
+     }
+     
+     #notifications-badge {
+        position: absolute;
+        top: 0px;
+        right: -5px;
+     }
+}

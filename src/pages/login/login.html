@@ -1,0 +1,46 @@
+<ion-content>
+  <div class="text-center logo-container">
+    <img src="assets/imgs/logo.png" />
+  </div><br>
+  <h6 block text-center>Customer Delivery App</h6>
+  <form (submit)="doLogin()">
+    <ion-list>
+
+      <ion-item>
+        <ion-label color="primary" floating>Username</ion-label>
+        <ion-input type="email" [(ngModel)]="account.username" name="email"></ion-input>
+      </ion-item>
+
+      <!--
+      Want to use a Username instead of an Email? Here you go:
+
+      <ion-item>
+        <ion-label floating>{{ 'USERNAME' | translate }}</ion-label>
+        <ion-input type="text" [(ngModel)]="account.username" name="username"></ion-input>
+      </ion-item>
+      -->
+
+      <ion-item>
+        <ion-label color="primary" floating>{{ 'PASSWORD' | translate }}</ion-label>
+        <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>
+      </ion-item>
+
+      <div padding>
+        <button ion-button color="primary" block>
+          <ion-icon name="ios-log-in"></ion-icon> {{ 'LOGIN_BUTTON' | translate }}
+        </button>
+      </div>
+
+    </ion-list>
+  </form>
+
+  <ion-label class="forgot-password">
+    <a (click)="navCtrl.push('ForgotPasswordPage')">Forgot Password?</a>
+  </ion-label>
+
+  <!-- <ion-list>
+    <ion-item>
+      <img src="assets/img/DT.png">
+    </ion-item>
+    </ion-list> -->
+</ion-content>

@@ -1,0 +1,115 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      <img alt="logo" height="30" src="assets/img/image001.png">
+    </ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <h2>Invoice Details</h2>
+  <form>    
+    <ion-list>
+      <ion-item>
+        <ion-label class="fontSize" fixed>Invoice Date:</ion-label>
+        <ion-input type="text" [(ngModel)]="listobj.Invoice_Date" name="invoicadate" readonly></ion-input>
+        <!-- <ion-datetime displayFormat="MMM DD, YYYY" [(ngModel)]="listobj.Invoice_Date" name="invoicedate"></ion-datetime> -->
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="fontSize" fixed>Invoice No:</ion-label>
+        <ion-input type="text" [(ngModel)]="listobj.Invoice_Number" name="inoiceNumber" readonly></ion-input>
+      </ion-item>      
+
+      <ion-item *ngIf="!userType.isCustomer">
+        <ion-label class="fontSize" fixed>Party Name:</ion-label>
+        <ion-input type="text" [(ngModel)]="listobj.Party_Name" name="partyName" readonly></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="!userType.isCustomer">
+        <ion-label class="fontSize" fixed>Contact Person Name1:</ion-label>
+        <ion-input type="text" [(ngModel)]="listobj.Customer_Contact_Name1" name="contactPersonName1" readonly>
+        </ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="!userType.isCustomer">
+        <ion-label class="fontSize" fixed>Contact Number1:</ion-label>
+        <ion-input type="number" [(ngModel)]="listobj.Customer_Contact_Number1" name="contactNumber1" readonly>
+        </ion-input>
+      </ion-item>
+      <ion-item *ngIf="!userType.isCustomer">
+        <ion-label class="fontSize" fixed>Contact Person Name2:</ion-label>
+        <ion-input type="text" [(ngModel)]="listobj.Customer_Contact_Name2" name="contactPersonName2" readonly>
+        </ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="!userType.isCustomer">
+        <ion-label class="fontSize" fixed>Contact Number2:</ion-label>
+        <ion-input type="number" [(ngModel)]="listobj.Customer_Contact_Number2" name="contactNumber2" readonly>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label class="fontSize" fixed>POD No:</ion-label>
+          <ion-input type="text" [(ngModel)]="listobj.POD_Number" style="margin-left: 14px;" name="podNumber" readonly></ion-input>
+          <button ion-button item-right icon-only clear (click)="presentImage()" style="font-size: 18px;">
+            <ion-icon name="image"></ion-icon>
+          </button>
+        </ion-item>
+
+      <ion-item>
+        <ion-label class="fontSize" fixed>Pickup Date:</ion-label>
+        <ion-input type="text" [(ngModel)]="listobj.pdate" name="pdate" readonly>
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="fontSize" fixed>Delivery Status Date:</ion-label>
+        <ion-input type="text" [(ngModel)]="listobj.DStatusdate" name="DStatusdate" readonly>
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="fontSize" fixed>Delivery Status:</ion-label>
+        <ion-input type="text" [(ngModel)]="listobj.Dstatus" name="Dstatus" readonly>
+        </ion-input>
+      </ion-item>
+
+      <div padding text-center *ngIf="btnShow.bstatus">
+        <button ion-button color="primary" *ngIf="!userType.isCustomer" class="bg-color"
+          (click)="promptDeliveryDetail()"> Deliver </button>
+        <button ion-button color="danger" *ngIf="!userType.isCustomer" (click)="promptRetunReason()"> Return </button>
+        <!-- <button ion-button color="primary" (click)="goToReturnRequest()"> Return Request</button> -->
+      </div>
+
+    </ion-list>
+    <ion-grid text-center>
+      <ion-row>
+        <ion-col>
+          <ion-label>Sku Code</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label>Name</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label>Quantity</ion-label>
+        </ion-col>
+        <ion-col *ngIf="(!userType.isCustomer && listobj.Delivered == '1') || (userType.isCustomer && listobj.bstatus =='1')">
+          <ion-label>Variance</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row shadow *ngFor="let item of listData">
+        <ion-col>{{item.SKU_code}}</ion-col>
+        <ion-col>{{item.SKU_Name}}</ion-col>
+        <ion-col>{{item.Quantity}}</ion-col>
+        <ion-col *ngIf="(!userType.isCustomer && listobj.Delivered == '1') || (userType.isCustomer && listobj.bstatus =='1')">
+          <button ion-button icon-only (click)="this.navCtrl.push('ReturnRequestPage', { InvoiceNumber: listobj.Invoice_Number, itemData:item })" style="font-size: 11px;">
+              <ion-icon name="return-left"></ion-icon>
+        </button>
+      </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </form>
+</ion-content>

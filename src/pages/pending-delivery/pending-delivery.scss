@@ -1,0 +1,49 @@
+page-pending-delivery {
+    ion-label {
+        font-weight: 800;
+    }
+    [shadow] {
+        box-shadow: 0 1px 4px 0px rgba(0, 0, 0, .3);
+        margin-bottom: 5px;
+        border-radius: 2px;
+    }
+    .ion-row-header{
+        flex-wrap: nowrap;
+    }
+    .toolbar-md-primary .toolbar-title-md{
+        position: absolute;
+        text-align: center;
+    }
+    .toolbar-ios-primary .toolbar-title-ios{
+        text-align: center;
+        position: relative;
+        width: -webkit-fill-available;
+    }
+    .toolbar-md-primary .toolbar-background-md, .toolbar-ios-primary .toolbar-background-ios {
+        background: #0B418B;
+    }
+    .label-md{        
+        margin: 10px -5px 10px 0px;
+    }
+    .label-ios{        
+        margin: 10px 0px 10px -5px;
+        font-size: 12px;
+    }
+    .label-md,  .label-ios{
+        margin: 0px 0px -10px 0px;
+        text-align: left;
+        margin-left: 8%;
+    }
+    .button-md, .button-ios {
+        border-radius: 10px;
+        text-transform: none;
+        width: 98%;
+    }
+    h2{
+        margin-top: 0.6rem;
+        margin-bottom: 0rem;
+        font-weight: 500;
+        line-height: 1.2;
+        text-align: center;
+    }
+}

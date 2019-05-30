@@ -135,6 +135,7 @@ export class MyApp {
 
     this.fcm.onTokenRefresh().subscribe(token => {
       localStorage.setItem('FCMToken', token);
+      this.initPushNotification();
     });
   }
 

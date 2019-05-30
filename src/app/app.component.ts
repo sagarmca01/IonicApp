@@ -135,7 +135,6 @@ export class MyApp {
 
     this.fcm.onTokenRefresh().subscribe(token => {
       localStorage.setItem('FCMToken', token);
-      this.initPushNotification();
     });
   }
 
@@ -144,6 +143,7 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     if (page.title == 'Logout') {
       localStorage.clear();
+      this.initPushNotification();
     }
     this.nav.setRoot(page.component);
   }

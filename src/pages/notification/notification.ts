@@ -55,6 +55,15 @@ export class NotificationPage {
       this.showToast("No network connection, Please try again.");
     }
   }
+
+  dateFormate(dateString: string){
+    if(dateString != '0000-00-00 00:00:00'){
+      dateString = dateString.replace(/ /g,"T");
+      return dateString;
+    }else{
+      return "";
+    }
+  }
   showToast(msg: any) {
     let toast = this.toastCtrl.create({
       message: msg,

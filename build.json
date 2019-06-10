@@ -1,0 +1,18 @@
+{
+    "android": {
+        "debug": {
+            "keystore": "release-key.jks",
+            "storePassword": "Customer@123!!",
+            "alias": "CustomerDelivery",
+            "password" : "Customer@123!!",
+            "keystoreType": "jks"
+        },
+        "release": {
+            "keystore": "release-key.jks",
+            "storePassword": "Customer@123!!",
+            "alias": "CustomerDelivery",
+            "password" : "Customer@123!!",
+            "keystoreType": "jks"
+        }
+    }
+}

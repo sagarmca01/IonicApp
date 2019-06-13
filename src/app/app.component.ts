@@ -109,6 +109,7 @@ export class MyApp {
 
   initPushNotification() {
     this.fcm.getToken().then(token => {
+      console.log("Token==>", token);
       localStorage.setItem('FCMToken', token);
     });
 
@@ -134,6 +135,7 @@ export class MyApp {
     });
 
     this.fcm.onTokenRefresh().subscribe(token => {
+      console.log("Refresh Token==>", token);
       localStorage.setItem('FCMToken', token);
     });
   }

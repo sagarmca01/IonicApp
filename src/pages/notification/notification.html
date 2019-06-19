@@ -9,7 +9,7 @@
 <ion-content padding>
     <h2>{{headingText}}</h2>
   <ion-list>
-    <ion-item shadow *ngFor="let item of notificationData">
+    <ion-item shadow *ngFor="let item of notificationData" text-wrap>
       <h2>{{item.Notification}}</h2>
       <p>{{(dateFormate(item.date) !== '') ? (dateFormate(item.date) | date: 'short') : " "}}</p>
       <!-- <p *ngIf="item.date=='0000-00-00 00:00:00'">{{item.date }}</p> -->

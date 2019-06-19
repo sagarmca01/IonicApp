@@ -109,20 +109,20 @@ export class MyApp {
 
   initPushNotification() {
     this.fcm.getToken().then(token => {
-      console.log("Token==>", token);
+      //console.log("Token==>", token);
       localStorage.setItem('FCMToken', token);
     });
 
     this.fcm.onNotification().subscribe(data => {
       if (data.wasTapped) {
-        console.log("Received in background");
+       // console.log("Received in background");
         if (localStorage.getItem("userID")) {
           this.rootPage = NotificationPage;
         } else {
           this.rootPage = LetusKnowPage;
         }
       } else {
-        console.log("Received in foreground");
+        //console.log("Received in foreground");
         if (localStorage.getItem('NotificationCount')) {
           var count = localStorage.getItem('NotificationCount');
           var nCount = parseInt(count) + 1;
@@ -135,7 +135,7 @@ export class MyApp {
     });
 
     this.fcm.onTokenRefresh().subscribe(token => {
-      console.log("Refresh Token==>", token);
+     // console.log("Refresh Token==>", token);
       localStorage.setItem('FCMToken', token);
     });
   }

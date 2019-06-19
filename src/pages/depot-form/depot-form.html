@@ -6,6 +6,12 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
+    <ion-buttons end>
+      <button id="notification-btn" ion-button icon-only (click)="this.navCtrl.push('NotificationPage')" style="font-size: 20px;">
+        <ion-icon name="notifications"></ion-icon>
+        <ion-badge id="notifications-badge" *ngIf="notificationCount">{{notificationCount}}</ion-badge>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 

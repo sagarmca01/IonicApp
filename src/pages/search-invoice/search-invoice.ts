@@ -20,7 +20,7 @@ export interface Slide {
 })
 export class SearchInvoicePage {
   public refresherEnabled: any;
-  notificationCount:any;
+  notificationCount: any;
   slides: Slide[];
   dir: string = 'ltr';
   userInfo: { user_type: string } = { user_type: '' }
@@ -44,7 +44,7 @@ export class SearchInvoicePage {
     public toastCtrl: ToastController,
     public loadingCtrl: LoadingController,
     public banner: BannersProvider,
-    public events:Events
+    public events: Events
   ) {
     this.userInfo.user_type = "Banner";
     this.pendingData = [];
@@ -52,11 +52,11 @@ export class SearchInvoicePage {
     this.getBannerImages();
     this.getDeliveredDelivery();
     this.getPendingDelivery();
-    if(localStorage.getItem('NotificationCount')){
+    if (localStorage.getItem('NotificationCount')) {
       this.notificationCount = localStorage.getItem('NotificationCount');
-  }else{
-    this.notificationCount = '';
-  }
+    } else {
+      this.notificationCount = '';
+    }
     this.events.subscribe('Notification', (Count) => {
       this.notificationCount = Count;
     });
@@ -70,12 +70,12 @@ export class SearchInvoicePage {
   }
 
   doRefresh() {
-    console.log('Begin async operation');   
-      this.pendingData = [];
-      this.deliveredData = [];
-      this.getDeliveredDelivery();
-      this.getPendingDelivery();      
-      
+    console.log('Begin async operation');
+    this.pendingData = [];
+    this.deliveredData = [];
+    this.getDeliveredDelivery();
+    this.getPendingDelivery();
+
   }
 
   searchInvoiceWithNumber(number: any) {
@@ -169,22 +169,22 @@ export class SearchInvoicePage {
         loading.dismiss();
         if (resp != null) {
           if (resp.success == 'true') {
-            if(resp.data != null){
-            if(resp.data.length>0){
-              for(var i=0;i<resp.data.length;i++){
-                this.deliveredData.push(resp.data[i]);
-                if(i==2){
-                  return;
+            if (resp.data != null) {
+              if (resp.data.length > 0) {
+                for (var i = 0; i < resp.data.length; i++) {
+                  this.deliveredData.push(resp.data[i]);
+                  if (i == 2) {
+                    return;
+                  }
                 }
               }
-            } 
-          }
+            }
           } else {
             this.showToast(resp.msg);
           }
-          if(this.deliveredData.length<3){
-            for(let j = this.deliveredData.length; j<3;j++){
-              var obj={
+          if (this.deliveredData.length < 3) {
+            for (let j = this.deliveredData.length; j < 3; j++) {
+              var obj = {
                 Invoice_Id: "--",
                 PARTYNAME: "--",
                 Statusdate: "--",
@@ -219,22 +219,22 @@ export class SearchInvoicePage {
         loading.dismiss();
         if (resp != null) {
           if (resp.success == 'true') {
-            if(resp.data != null){
-            if(resp.data.length>0){
-              for(var i=0;i<resp.data.length;i++){
-                this.pendingData.push(resp.data[i]);
-                if(i==2){
-                  return;
+            if (resp.data != null) {
+              if (resp.data.length > 0) {
+                for (var i = 0; i < resp.data.length; i++) {
+                  this.pendingData.push(resp.data[i]);
+                  if (i == 2) {
+                    return;
+                  }
                 }
               }
-            } 
-          }           
+            }
           } else {
             this.showToast(resp.msg);
           }
-          if(this.pendingData.length<3){
-            for(let j = this.pendingData.length; j<3;j++){
-              var obj={
+          if (this.pendingData.length < 3) {
+            for (let j = this.pendingData.length; j < 3; j++) {
+              var obj = {
                 Invoice_Id: "--",
                 PARTYNAME: "--",
                 Statusdate: "--",
@@ -260,7 +260,7 @@ export class SearchInvoicePage {
     }
   }
 
-  getInvoiceDetail(InvoiceNumber:any){
+  getInvoiceDetail(InvoiceNumber: any) {
     if (navigator.onLine) {
       this.searchInvoice.Invoice_Number = InvoiceNumber;
       this.searchInvoice.user_id = localStorage.getItem("userID");
@@ -269,13 +269,14 @@ export class SearchInvoicePage {
       loading.present();
       this.search.searchInvoice(this.searchInvoice).subscribe((resp: any) => {
         loading.dismiss();
-        if(resp!=null){
-        if (resp.success == 'true') {
-          this.navCtrl.push(DeliveryListPage, { searchData: resp.data, listData: resp.data1 });
+        if (resp != null) {
+          if (resp.success == 'true') {
+            this.navCtrl.push(DeliveryListPage, { searchData: resp.data, listData: resp.data1 });
+          } else {
+            this.showToast(resp.msg);
+            return;
+          }
         } else {
-          this.showToast(resp.msg);
-          return;
-        }}else{
           this.showToast("Invoice not found.");
         }
       }, (err) => {

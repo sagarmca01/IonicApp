@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController, Events } from 'ionic-angular';
 import { SearchinvoiceProvider } from '../../providers/searchinvoice/searchinvoice';
 import { User } from '../../providers';
 import { Camera, CameraOptions } from '@ionic-native/camera';
@@ -21,13 +21,14 @@ export class DepotFormPage {
     Invoice_Number: '', POD_Pic: '', DC_Number: '', user_id: '', Transporter_Name: '', POD_Number: '', Vehicle_Number: '', Pickup_Date: '', Pickup_Person_Name: '', Pickup_Mobile: '', Number_of_Pieces: ''
   };
   userInfo:{user_id:string, Invoice_Number:string}={user_id:'',Invoice_Number:''};
-
+  notificationCount:any;
   transPorterList:any[];
   selectedData:any=0;
   public photo: any;
   public base64Image : string;
 
   constructor(
+    public events: Events,
     public search: SearchinvoiceProvider,
     public user:User, 
     public camera:Camera,
@@ -40,6 +41,15 @@ export class DepotFormPage {
     this.getTransporterList();
     var tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
     this.pickupData.Pickup_Date = (new Date(Date.now() - tzoffset)).toISOString().slice(0,-1);
+
+    if (localStorage.getItem('NotificationCount')) {
+      this.notificationCount = localStorage.getItem('NotificationCount');
+    } else {
+      this.notificationCount = '';
+    }
+    this.events.subscribe('Notification', (Count) => {
+      this.notificationCount = Count;
+    });
   }
 
   ionViewDidLoad() {
